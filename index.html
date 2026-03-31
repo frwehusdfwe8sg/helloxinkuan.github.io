@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>姚响 | 个人主页 · 宝可梦图鉴</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== 原有个人主页样式 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        :root {
+            --primary-color: #3498db;
+            --primary-dark: #2980b9;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #f8fafc;
+            --dark-color: #2d3748;
+            --text-light: #718096;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --gradient-primary: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            --gradient-light: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --border-radius: 16px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero {
+            padding: 120px 0 80px;
+            background: var(--gradient-light);
+            position: relative;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+        }
+        
+        .hero-content .highlight {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-content .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(52, 152, 219, 0.2);
+            z-index: -1;
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .skill-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(52,152,219,0.1), rgba(44,62,80,0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-info, .contact-form {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, rgba(52,152,219,0.1), rgba(44,62,80,0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #f8fafc;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ========== 宝可梦图鉴样式 ========== */
+        .pokedex-section {
+            background: linear-gradient(145deg, #f5f7fc 0%, #eef2f8 100%);
+            padding: 60px 0 80px;
+        }
+        
+        .pokedex-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .pokedex-header h2 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #f5af19, #f12711);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .pokedex-header p {
+            color: #4a627a;
+            margin-top: 10px;
+        }
+        
+        .search-wrapper {
+            max-width: 450px;
+            margin: 0 auto 35px;
+            position: relative;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8ba0bc;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            font-family: inherit;
+            border: 1px solid #e2edf7;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #f5af19;
+        }
+        
+        .pokemon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .pokemon-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .pokemon-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+        }
+        
+        .card-img {
+            background: linear-gradient(145deg, #f8fafd, #f0f4fa);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .card-img img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+        
+        .pokemon-id {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(0,0,0,0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+        
+        .card-info {
+            padding: 1rem 1rem 1.2rem;
+            text-align: center;
+        }
+        
+        .pokemon-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            margin-bottom: 0.5rem;
+            color: #1f2f3e;
+        }
+        
+        .type-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+        
+        .type-electric { background: #f7d44a; color: #6b4c1c; }
+        .type-grass { background: #9bcc50; color: #1a4d1a; }
+        .type-fire { background: #fd7d24; color: white; }
+        .type-water { background: #4592c4; color: white; }
+        .type-bug { background: #729f3f; color: white; }
+        .type-normal { background: #a4acaf; color: #2c3e2f; }
+        .type-poison { background: #b97fc9; color: white; }
+        
+        .status-message {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 1.5rem;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            border: 3px solid #e9ecef;
+            border-top-color: #f5af19;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                transform: translateY(-150%);
+                transition: 0.3s;
+                box-shadow: var(--shadow);
+            }
+            .nav-links.active { transform: translateY(0); }
+            .nav-links li { margin: 12px 0; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-content { flex-direction: column; }
+            .contact-container { flex-direction: column; }
+            .pokemon-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .card-img img { width: 90px; height: 90px; }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">姚响</a>
+                <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#skills">爱好</a></li>
+                    <li><a href="#contact">联系我</a></li>
+                    <li><a href="#pokedex">宝可梦图鉴</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content animate-on-scroll">
+                <h1>探索、学习、成长<br><span class="highlight">姚响的个人主页</span></h1>
+                <p>一名热爱学习、探索世界的学生。我相信每个新的一天都是学习的机会，每个挑战都是成长的阶梯。</p>
+                <div class="hero-btns">
+                    <a href="#about" class="btn"><i class="fas fa-user"></i> 了解更多</a>
+                    <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> 联系我</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title animate-on-scroll"><h2>关于我</h2><p>了解我的背景、兴趣和人生哲学</p></div>
+            <div class="about-content animate-on-scroll">
+                <div class="about-img"><img src="https://ts4.tc.mm.bing.net/th/id/OIP-C.IhofG0q_4kIRtEg4IJ0wMAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="个人照片"></div>
+                <div class="about-text">
+                    <h3>学生 & 探索者</h3>
+                    <p>我是一名充满好奇心的学生，目前专注于学业的同时，也在积极探索世界的各个方面。我相信教育不仅仅是课堂上的学习，更是生活中每一次的体验和思考。</p>
+                    <p>我的日常包括阅读经典文学、沉浸在游戏世界中体验不同的人生故事，以及通过冥想来培养内心的平静与专注力。</p>
+                    <div style="margin-top: 20px;"><a href="#contact" class="btn"><i class="fas fa-handshake"></i> 与我联系</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section skills-section" id="skills">
+        <div class="container">
+            <div class="section-title animate-on-scroll"><h2>我的爱好</h2><p>这些活动塑造了我的思维方式和世界观</p></div>
+            <div class="skills-container">
+                <div class="skill-card animate-on-scroll"><div class="skill-icon"><i class="fas fa-book-open"></i></div><h3>深度阅读</h3><p>从经典文学到现代思想，阅读是我获取知识和灵感的主要途径。</p></div>
+                <div class="skill-card animate-on-scroll"><div class="skill-icon"><i class="fas fa-gamepad"></i></div><h3>游戏体验</h3><p>游戏不仅是娱乐，更是互动叙事和策略思考的载体。</p></div>
+                <div class="skill-card animate-on-scroll"><div class="skill-icon"><i class="fas fa-brain"></i></div><h3>正念冥想</h3><p>冥想帮助我保持内心平静，提高专注力，培养自我觉察。</p></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-title animate-on-scroll"><h2>联系我</h2><p>欢迎与我交流思想、分享见解或讨论合作可能</p></div>
+            <div class="contact-container animate-on-scroll">
+                <div class="contact-info">
+                    <h3>联系信息</h3>
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>所在地</h4><p>中国 · 探索世界的路上</p></div></div>
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>电子邮箱</h4><p>yezh@qq.com</p></div></div>
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><h4>联系电话</h4><p>+86 888 0003 0230</p></div></div>
+                </div>
+                <div class="contact-form">
+                    <h3>发送消息</h3>
+                    <form id="contactForm">
+                        <div class="form-group"><input type="text" class="form-control" id="name" placeholder="您的姓名" required></div>
+                        <div class="form-group"><input type="email" class="form-control" id="email" placeholder="电子邮箱" required></div>
+                        <div class="form-group"><textarea class="form-control" id="message" rows="4" placeholder="您的消息" required></textarea></div>
+                        <button type="submit" class="btn" style="width:100%"><i class="fas fa-paper-plane"></i> 发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 宝可梦图鉴区域（新增） -->
+    <section class="pokedex-section" id="pokedex">
+        <div class="container">
+            <div class="pokedex-header">
+                <h2><i class="fas fa-pokeball"></i> 宝可梦图鉴</h2>
+                <p>✨ 第一世代伙伴 · hover放大卡片 ✨</p>
+            </div>
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="pokemonSearch" placeholder="搜索宝可梦 (如: pikachu, 妙蛙种子)" autocomplete="off">
+            </div>
+            <div id="pokemonGrid" class="pokemon-grid"></div>
+            <div id="pokemonStatus" class="status-message" style="display: none;"></div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 姚响 | 终身学习者 · 宝可梦训练家</p>
+        </div>
+    </footer>
+    
+    <script>
+        // ========== 原有交互 ==========
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`感谢 ${name} 的留言！我会尽快回复。`);
+            this.reset();
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if(target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+            });
+        });
+        
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('active', window.pageYOffset > 300);
+        });
+        
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        const animateOnScroll = () => {
+            animateElements.forEach(el => {
+                if(el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('animated');
+            });
+        };
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // ========== 宝可梦图鉴逻辑 ==========
+        let allPokemonData = [];
+        let searchTimeout;
+        
+        function showPokemonStatus(type, msg = '') {
+            const statusDiv = document.getElementById('pokemonStatus');
+            const gridDiv = document.getElementById('pokemonGrid');
+            statusDiv.style.display = 'block';
+            gridDiv.style.display = 'none';
+            if (type === 'loading') {
+                statusDiv.innerHTML = `<div class="loading-spinner"></div><div style="margin-top:12px">🐣 正在抓宝可梦…</div>`;
+            } else if (type === 'error') {
+                statusDiv.innerHTML = `<i class="fas fa-exclamation-triangle" style="font-size:2rem;color:#e25822"></i><div>网络出问题啦！请刷新重试</div>`;
+            } else if (type === 'empty') {
+                statusDiv.innerHTML = `<i class="fas fa-face-frown"></i><div>没有找到 “${msg}” 相关的宝可梦</div>`;
+            }
+        }
+        
+        function hidePokemonStatus() {
+            document.getElementById('pokemonStatus').style.display = 'none';
+            document.getElementById('pokemonGrid').style.display = 'grid';
+        }
+        
+        function getPokemonImage(id) {
+            return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+        }
+        
+        function getPrimaryType(types) {
+            if (!types || !types.length) return 'normal';
+            return types[0].type.name;
+        }
+        
+        async function fetchPokemonData() {
+            showPokemonStatus('loading');
+            try {
+                const listRes = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
+                if (!listRes.ok) throw new Error();
+                const listData = await listRes.json();
+                const details = await Promise.all(listData.results.map(async (item) => {
+                    const detailRes = await fetch(item.url);
+                    const detail = await detailRes.json();
+                    return {
+                        id: detail.id,
+                        name: detail.name,
+                        primaryType: getPrimaryType(detail.types),
+                        image: getPokemonImage(detail.id)
+                    };
+                }));
+                allPokemonData = details.sort((a,b) => a.id - b.id);
+                renderPokemonCards();
+            } catch (err) {
+                showPokemonStatus('error');
+            }
+        }
+        
+        function renderPokemonCards() {
+            const searchVal = document.getElementById('pokemonSearch').value.trim().toLowerCase();
+            let filtered = allPokemonData;
+            if (searchVal) {
+                filtered = allPokemonData.filter(p => p.name.toLowerCase().includes(searchVal));
+            }
+            if (filtered.length === 0) {
+                showPokemonStatus('empty', searchVal);
+                return;
+            }
+            hidePokemonStatus();
+            const grid = document.getElementById('pokemonGrid');
+            grid.innerHTML = filtered.map(p => `
+                <div class="pokemon-card">
+                    <div class="card-img">
+                        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png'">
+                        <span class="pokemon-id">#${String(p.id).padStart(3,'0')}</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="pokemon-name">${p.name}</div>
+                        <span class="type-badge type-${p.primaryType}">${p.primaryType}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        document.getElementById('pokemonSearch').addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => renderPokemonCards(), 250);
+        });
+        
+        fetchPokemonData();
+    </script>
+</body>
+</html>
